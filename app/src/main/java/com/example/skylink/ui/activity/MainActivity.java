@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mainToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
         if (getSupportActionBar() != null){
+            System.out.println("made it here");
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
