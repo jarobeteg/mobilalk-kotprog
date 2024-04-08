@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--bottom nav menu strings-->
+    <string name="bottom_nav_home">Főoldal</string>
+    <string name="bottom_nav_bookings">Foglalások</string>
+    <string name="bottom_nav_profile">Profil</string>
+    <string name="bottom_nav_more">Egyebek</string>
+</resources>
