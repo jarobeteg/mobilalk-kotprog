@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -15,7 +14,7 @@ import com.example.skylink.adapter.MainViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AbsThemeActivity {
     private BottomNavigationView bottomNavigationView;
     private Toolbar mainToolbar;
     private ViewPager2 viewPager2;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         mainToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
         if (getSupportActionBar() != null){
-            System.out.println("made it here");
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 

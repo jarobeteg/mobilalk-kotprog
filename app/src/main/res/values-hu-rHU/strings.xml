@@ -5,4 +5,28 @@
     <string name="bottom_nav_bookings">Foglalások</string>
     <string name="bottom_nav_profile">Profil</string>
     <string name="bottom_nav_more">Egyebek</string>
+    <string name="title_settings_menu">Beállítások Menü</string>
+
+    <!--Preference Titles-->
+    <string name="settings_activity_title">Beállítások</string>
+    <string name="general_header">Általános</string>
+
+    <!--ListPreference Theme-->
+    <string name="theme_title">App Témaválasztás</string>
+    <string name="theme_summary">Személyre szabhatja az alkalmazás megjelenését a különböző témák közötti választással.</string>
+    <string name="theme_day">Világos</string>
+    <string name="theme_night">Sötét</string>
+    <string name="theme_day_night">Rendszer-alapú</string>
+
+    <!--ListPreference Color-->
+    <string name="color_title">Válassza ki az alkalmazás témájának színét</string>
+    <string name="color_summary">Válasszon nyolc különböző szín közül, hogy az alkalmazás témáját a saját ízlése szerint alakítsa.</string>
+    <string name="colorTeal">Teal</string>
+    <string name="colorIndigo">Indigó</string>
+    <string name="colorDarkPurple">Sötét lila</string>
+    <string name="colorBlue">Kék</string>
+    <string name="colorGreen">Zöld</string>
+    <string name="colorAmber">Borostyán</string>
+    <string name="colorRed">Piros</string>
+    <string name="colorPink">Rózsaszín</string>
 </resources>
