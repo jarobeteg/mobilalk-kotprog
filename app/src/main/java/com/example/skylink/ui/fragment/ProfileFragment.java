@@ -1,7 +1,10 @@
 package com.example.skylink.ui.fragment;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +17,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.skylink.R;
+import com.example.skylink.ui.activity.RegisterActivity;
 import com.example.skylink.ui.viewmodel.ProfileViewModel;
 
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel mViewModel;
+    private ActivityResultLauncher<Intent> registerLauncher;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -45,14 +50,19 @@ public class ProfileFragment extends Fragment {
                     })
                     .start();
 
-            register();
+            registerLauncher.launch(new Intent(requireActivity(), RegisterActivity.class));
         });
 
-        return view;
-    }
+        registerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RegisterActivity.RESULT_OK){
+                        System.out.println("register was successful");
+                    } else if (result.getResultCode() == RegisterActivity.RESULT_CANCELED) {
+                        System.out.println("registration was cancelled by the user");
+                    }
+                });
 
-    private void register() {
-        System.out.println("register button clicked");
+        return view;
     }
 
     @Override
