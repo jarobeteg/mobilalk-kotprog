@@ -45,20 +45,17 @@ public class MainActivity extends AbsThemeActivity {
             }
         });
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.nav_fragment_home){
-                    viewPager2.setCurrentItem(0, true);
-                } else if (menuItem.getItemId() == R.id.nav_fragment_bookings){
-                    viewPager2.setCurrentItem(1, true);
-                } else if (menuItem.getItemId() == R.id.nav_fragment_profile){
-                    viewPager2.setCurrentItem(2, true);
-                } else if (menuItem.getItemId() == R.id.nav_fragment_more){
-                    viewPager2.setCurrentItem(3, true);
-                }
-                return true;
+        bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.nav_fragment_home){
+                viewPager2.setCurrentItem(0, true);
+            } else if (menuItem.getItemId() == R.id.nav_fragment_bookings){
+                viewPager2.setCurrentItem(1, true);
+            } else if (menuItem.getItemId() == R.id.nav_fragment_profile){
+                viewPager2.setCurrentItem(2, true);
+            } else if (menuItem.getItemId() == R.id.nav_fragment_more){
+                viewPager2.setCurrentItem(3, true);
             }
+            return true;
         });
 
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
