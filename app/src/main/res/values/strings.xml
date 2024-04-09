@@ -37,4 +37,8 @@
     <string name="default_color_value" translatable="false">teal</string>
 
     <string name="register">Register</string>
+    <string name="register_username">Username</string>
+    <string name="register_email">Email address</string>
+    <string name="register_password">Password</string>
+    <string name="register_password_confirm">Password confirmation</string>
 </resources>

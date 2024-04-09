@@ -19,11 +19,15 @@ import android.widget.Button;
 import com.example.skylink.R;
 import com.example.skylink.ui.activity.RegisterActivity;
 import com.example.skylink.ui.viewmodel.ProfileViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel mViewModel;
     private ActivityResultLauncher<Intent> registerLauncher;
+    private FirebaseUser user;
+    private FirebaseAuth mAuth;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -33,6 +37,16 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
+        if (user != null){
+            System.out.println("Authenticated user");
+            System.out.println(user.getDisplayName());
+            System.out.println(user.getEmail());
+        } else {
+            System.out.println("Unauthenticated user");
+        }
 
         Button register = view.findViewById(R.id.register_button);
 

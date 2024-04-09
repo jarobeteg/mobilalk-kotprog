@@ -31,4 +31,8 @@
     <string name="colorPink">Rózsaszín</string>
 
     <string name="register">Regisztráció</string>
+    <string name="register_username">Felhasználónév</string>
+    <string name="register_email">Email cím</string>
+    <string name="register_password">Jelszó</string>
+    <string name="register_password_confirm">Jelszó megerősítése</string>
 </resources>
