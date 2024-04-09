@@ -29,6 +29,7 @@
     <style name="Theme.SkyLink.Light.Teal" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/tealPrimary</item>
         <item name="colorPrimaryDark">@color/tealPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/tealPrimaryDarker</item>
         <item name="colorAccent">@color/tealAccent</item>
         <item name="colorTransparentCustom">@color/tealTransparent</item>
     </style>
@@ -36,6 +37,7 @@
     <style name="Theme.SkyLink.Light.Indigo" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/indigoPrimary</item>
         <item name="colorPrimaryDark">@color/indigoPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/indigoPrimaryDarker</item>
         <item name="colorAccent">@color/indigoAccent</item>
         <item name="colorTransparentCustom">@color/indigoTransparent</item>
     </style>
@@ -43,6 +45,7 @@
     <style name="Theme.SkyLink.Light.DarkPurple" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/darkPurplePrimary</item>
         <item name="colorPrimaryDark">@color/darkPurplePrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/darkPurplePrimaryDarker</item>
         <item name="colorAccent">@color/darkPurpleAccent</item>
         <item name="colorTransparentCustom">@color/darkPurpleTransparent</item>
     </style>
@@ -50,6 +53,7 @@
     <style name="Theme.SkyLink.Light.Blue" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/bluePrimary</item>
         <item name="colorPrimaryDark">@color/bluePrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/bluePrimaryDarker</item>
         <item name="colorAccent">@color/blueAccent</item>
         <item name="colorTransparentCustom">@color/blueTransparent</item>
     </style>
@@ -57,6 +61,7 @@
     <style name="Theme.SkyLink.Light.Green" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/greenPrimary</item>
         <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/greenPrimaryDarker</item>
         <item name="colorAccent">@color/greenAccent</item>
         <item name="colorTransparentCustom">@color/greenTransparent</item>
     </style>
@@ -64,6 +69,7 @@
     <style name="Theme.SkyLink.Light.Amber" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/amberPrimary</item>
         <item name="colorPrimaryDark">@color/amberPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/amberPrimaryDarker</item>
         <item name="colorAccent">@color/amberAccent</item>
         <item name="colorTransparentCustom">@color/amberTransparent</item>
     </style>
@@ -71,6 +77,7 @@
     <style name="Theme.SkyLink.Light.Red" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/redPrimary</item>
         <item name="colorPrimaryDark">@color/redPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/redPrimaryDarker</item>
         <item name="colorAccent">@color/redAccent</item>
         <item name="colorTransparentCustom">@color/redTransparent</item>
     </style>
@@ -78,6 +85,7 @@
     <style name="Theme.SkyLink.Light.Pink" parent="Theme.SkyLink">
         <item name="colorPrimary">@color/pinkPrimary</item>
         <item name="colorPrimaryDark">@color/pinkPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/pinkPrimaryDarker</item>
         <item name="colorAccent">@color/pinkAccent</item>
         <item name="colorTransparentCustom">@color/pinkTransparent</item>
     </style>
@@ -86,6 +94,7 @@
     <style name="Theme.SkyLink.Dark.Teal" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/tealPrimary</item>
         <item name="colorPrimaryDark">@color/tealPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/tealPrimaryDarker</item>
         <item name="colorAccent">@color/tealAccent</item>
         <item name="colorTransparentCustom">@color/tealTransparent</item>
     </style>
@@ -93,6 +102,7 @@
     <style name="Theme.SkyLink.Dark.Indigo" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/indigoPrimary</item>
         <item name="colorPrimaryDark">@color/indigoPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/indigoPrimaryDarker</item>
         <item name="colorAccent">@color/indigoAccent</item>
         <item name="colorTransparentCustom">@color/indigoTransparent</item>
         <item name="alertDialogTheme">@style/Theme.SkyLink.Dark.Indigo.Dialog</item>
@@ -101,6 +111,7 @@
     <style name="Theme.SkyLink.Dark.DarkPurple" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/darkPurplePrimary</item>
         <item name="colorPrimaryDark">@color/darkPurplePrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/darkPurplePrimaryDarker</item>
         <item name="colorAccent">@color/darkPurpleAccent</item>
         <item name="colorTransparentCustom">@color/darkPurpleTransparent</item>
         <item name="alertDialogTheme">@style/Theme.SkyLink.Dark.DarkPurple.Dialog</item>
@@ -109,6 +120,7 @@
     <style name="Theme.SkyLink.Dark.Blue" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/bluePrimary</item>
         <item name="colorPrimaryDark">@color/bluePrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/bluePrimaryDarker</item>
         <item name="colorAccent">@color/blueAccent</item>
         <item name="colorTransparentCustom">@color/blueTransparent</item>
     </style>
@@ -116,6 +128,7 @@
     <style name="Theme.SkyLink.Dark.Green" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/greenPrimary</item>
         <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/greenPrimaryDarker</item>
         <item name="colorAccent">@color/greenAccent</item>
         <item name="colorTransparentCustom">@color/greenTransparent</item>
     </style>
@@ -123,6 +136,7 @@
     <style name="Theme.SkyLink.Dark.Amber" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/amberPrimary</item>
         <item name="colorPrimaryDark">@color/amberPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/amberPrimaryDarker</item>
         <item name="colorAccent">@color/amberAccent</item>
         <item name="colorTransparentCustom">@color/amberTransparent</item>
     </style>
@@ -130,6 +144,7 @@
     <style name="Theme.SkyLink.Dark.Red" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/redPrimary</item>
         <item name="colorPrimaryDark">@color/redPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/redPrimaryDarker</item>
         <item name="colorAccent">@color/redAccent</item>
         <item name="colorTransparentCustom">@color/redTransparent</item>
     </style>
@@ -137,6 +152,7 @@
     <style name="Theme.SkyLink.Dark.Pink" parent="Theme.SkyLink.Dark">
         <item name="colorPrimary">@color/pinkPrimary</item>
         <item name="colorPrimaryDark">@color/pinkPrimaryDark</item>
+        <item name="colorPrimaryDarker">@color/pinkPrimaryDarker</item>
         <item name="colorAccent">@color/pinkAccent</item>
         <item name="colorTransparentCustom">@color/pinkTransparent</item>
     </style>

@@ -22,7 +22,7 @@
             android:textSize="24sp"
             android:textColor="@color/white"
             android:layout_gravity="center"
-            app:drawableStartCompat="@drawable/ic_skylink_32"
+            app:drawableStartCompat="@drawable/ic_skylink_36"
             android:drawablePadding="8dp"/>
 
     </androidx.appcompat.widget.Toolbar>
