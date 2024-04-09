@@ -1,18 +1,15 @@
 package com.example.skylink.ui.activity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.skylink.R;
 import com.example.skylink.adapter.MainViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AbsThemeActivity {
     private BottomNavigationView bottomNavigationView;

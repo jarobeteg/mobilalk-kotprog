@@ -35,4 +35,6 @@
     <string name="colorPink">Pink</string>
     <string name="pref_color_key" translatable="false">app_color</string>
     <string name="default_color_value" translatable="false">teal</string>
+
+    <string name="register">Register</string>
 </resources>

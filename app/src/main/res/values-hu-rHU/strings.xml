@@ -29,4 +29,6 @@
     <string name="colorAmber">Borostyán</string>
     <string name="colorRed">Piros</string>
     <string name="colorPink">Rózsaszín</string>
+
+    <string name="register">Regisztráció</string>
 </resources>
