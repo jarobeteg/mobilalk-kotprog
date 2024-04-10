@@ -35,4 +35,10 @@
     <string name="register_email">Email cím</string>
     <string name="register_password">Jelszó</string>
     <string name="register_password_confirm">Jelszó megerősítése</string>
+
+    <string name="unexpected_error">Váratlan hiba!</string>
+    <string name="all_fields_must_be_filled">Minden mezőt ki kell tölteni!</string>
+    <string name="passwords_do_not_match">A jelszavak nem egyeznek!</string>
+    <string name="no_user">Nincs felhasználó</string>
+    <string name="password_too_short">A jelszó hosszának legalább 8-nak kell lennie!</string>
 </resources>

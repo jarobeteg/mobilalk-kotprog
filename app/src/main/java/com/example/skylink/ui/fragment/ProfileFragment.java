@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.skylink.R;
 import com.example.skylink.ui.activity.RegisterActivity;
@@ -24,6 +25,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileFragment extends Fragment {
 
+    TextView usernameTextView;
+    TextView emailTextView;
     private ProfileViewModel mViewModel;
     private ActivityResultLauncher<Intent> registerLauncher;
     private FirebaseUser user;
@@ -37,16 +40,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
 
-        if (user != null){
-            System.out.println("Authenticated user");
-            System.out.println(user.getDisplayName());
-            System.out.println(user.getEmail());
-        } else {
-            System.out.println("Unauthenticated user");
-        }
+        usernameTextView = view.findViewById(R.id.username);
+        emailTextView = view.findViewById(R.id.email);
 
         Button register = view.findViewById(R.id.register_button);
 
@@ -70,13 +66,26 @@ public class ProfileFragment extends Fragment {
         registerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RegisterActivity.RESULT_OK){
-                        System.out.println("register was successful");
-                    } else if (result.getResultCode() == RegisterActivity.RESULT_CANCELED) {
-                        System.out.println("registration was cancelled by the user");
+                        updateUI();
                     }
                 });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
+    public void updateUI(){
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        if (user != null){
+            usernameTextView.setText(user.getDisplayName());
+            emailTextView.setText(user.getEmail());
+        }
     }
 
     @Override

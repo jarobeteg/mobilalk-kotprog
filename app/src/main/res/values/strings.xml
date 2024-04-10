@@ -41,4 +41,11 @@
     <string name="register_email">Email address</string>
     <string name="register_password">Password</string>
     <string name="register_password_confirm">Password confirmation</string>
+    <string name="default_web_client_id" translatable="false">742014917067-1n5dqcgq7fifbqmoqa6lb5hl00fcgrvh.apps.googleusercontent.com</string>
+
+    <string name="unexpected_error">Unexpected error!</string>
+    <string name="all_fields_must_be_filled">All fields must be filled!</string>
+    <string name="passwords_do_not_match">Passwords do not match!</string>
+    <string name="no_user">No user found</string>
+    <string name="password_too_short">The length of the password must be at least 8!</string>
 </resources>

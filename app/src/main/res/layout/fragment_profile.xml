@@ -5,6 +5,49 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ProfileFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_user"
+                android:textSize="18sp"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                android:background="@drawable/custom_rounded_textview"
+                android:layout_margin="8dp"
+                android:padding="16dp"/>
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_user"
+                android:textSize="18sp"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                android:layout_below="@id/username"
+                android:background="@drawable/custom_rounded_textview"
+                android:layout_margin="8dp"
+                android:padding="16dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"

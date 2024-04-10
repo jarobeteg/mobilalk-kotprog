@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -60,6 +61,10 @@ public class RegisterActivity extends AbsThemeActivity {
         getOnBackPressedDispatcher().addCallback(onBackPressedCallback);
     }
 
+    private void showToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
     private void register() {
         String username = usernameEditText.getText().toString();
         String email = emailEditText.getText().toString();
@@ -67,24 +72,28 @@ public class RegisterActivity extends AbsThemeActivity {
         String passwordConfirmation = passwordConfirmationEditText.getText().toString();
 
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty()) {
-            System.out.println("username or email or password or password confirmation is empty");
+            showToast(getString(R.string.all_fields_must_be_filled));
             return;
         }
 
         if (!password.equals(passwordConfirmation)) {
-            System.out.println("the passwords don't match");
+            showToast(getString(R.string.passwords_do_not_match));
+            return;
+        }
+
+        if (password.length() < 8){
+            showToast(getString(R.string.password_too_short));
             return;
         }
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful() || task.isComplete()){
-                    System.out.println("The exception: " + task.getException());
+                if (task.isSuccessful()){
                     setResult(Activity.RESULT_OK);
                     finish();
                 } else {
-                    System.out.println("undefined error: " + task.getException());
+                    showToast(getString(R.string.unexpected_error));
                 }
             }
         });
