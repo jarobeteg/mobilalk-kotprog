@@ -1,6 +1,7 @@
 package com.example.skylink.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -90,7 +91,10 @@ public class RegisterActivity extends AbsThemeActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    setResult(Activity.RESULT_OK);
+                    Intent data = new Intent();
+                    data.putExtra("username", username);
+                    data.putExtra("email", email);
+                    setResult(Activity.RESULT_OK, data);
                     finish();
                 } else {
                     showToast(getString(R.string.unexpected_error));

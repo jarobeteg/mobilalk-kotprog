@@ -16,12 +16,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.skylink.R;
 import com.example.skylink.ui.activity.RegisterActivity;
 import com.example.skylink.ui.viewmodel.ProfileViewModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
@@ -66,9 +75,12 @@ public class ProfileFragment extends Fragment {
         registerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RegisterActivity.RESULT_OK){
-                        updateUI();
+                        assert result.getData() != null;
+                        addUser(result.getData().getStringExtra("username"), result.getData().getStringExtra("email"));
                     }
                 });
+
+        loadUser();
 
         return view;
     }
@@ -79,13 +91,83 @@ public class ProfileFragment extends Fragment {
         updateUI();
     }
 
-    public void updateUI(){
+    private void updateUI(){
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         if (user != null){
             usernameTextView.setText(user.getDisplayName());
             emailTextView.setText(user.getEmail());
         }
+    }
+
+    private void updateUI(String username){
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        if (user != null){
+            usernameTextView.setText(username);
+            emailTextView.setText(user.getEmail());
+        }
+    }
+
+    private void showToast(String message){
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
+    }
+
+    private void addUser(String username, String email){
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
+        String userId = user.getUid();
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("username", username);
+        userData.put("email", email);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users")
+                .document(userId)
+                .set(userData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        updateUI(username);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        showToast("Error: " + e.getMessage());
+                    }
+                });
+    }
+
+    private void loadUser(){
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
+        assert user != null;
+        String userId = user.getUid();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("users").document(userId);
+
+        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    String username = documentSnapshot.getString("username");
+
+                    updateUI(username);
+                } else {
+                    showToast("User data not found");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle errors
+                showToast("Error: " + e.getMessage());
+            }
+        });
     }
 
     @Override

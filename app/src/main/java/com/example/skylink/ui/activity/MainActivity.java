@@ -44,7 +44,7 @@ public class MainActivity extends AbsThemeActivity {
         ImageButton logout = findViewById(R.id.logout_button);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.default_web_client_id)) //dumbo android studio thinks this is a bug
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
