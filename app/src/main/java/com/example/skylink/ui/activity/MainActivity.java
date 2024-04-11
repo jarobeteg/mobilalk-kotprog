@@ -2,11 +2,17 @@ package com.example.skylink.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -23,6 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AbsThemeActivity {
@@ -92,14 +99,17 @@ public class MainActivity extends AbsThemeActivity {
                 }
             }
         });
+
         login.setOnClickListener(v -> {
-            loginWithGoogle();
+            loginDialog();
 
         });
+
         logout.setOnClickListener(view -> {
             logoutWithGoogle();
-            recreate();
         });
+
+        loginAsGuest();
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
@@ -111,11 +121,45 @@ public class MainActivity extends AbsThemeActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             recreate();
-                        } else {
-
+                            showToast(getString(R.string.login_success));
                         }
                     }
                 });
+    }
+
+    private void loginDialog(){
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.login_dialog, null);
+
+        EditText editTextEmail = dialogView.findViewById(R.id.editTextEmail);
+        EditText editTextPassword = dialogView.findViewById(R.id.editTextPassword);
+        Button buttonLogin = dialogView.findViewById(R.id.buttonLogin);
+        Button buttonGoogleSignIn = dialogView.findViewById(R.id.buttonGoogleSignIn);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+
+        buttonLogin.setOnClickListener(v -> {
+            String email = editTextEmail.getText().toString();
+            String password = editTextPassword.getText().toString();
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        recreate();
+                        showToast(getString(R.string.login_success));
+                    }
+                }
+            });
+            dialog.dismiss();
+        });
+
+        buttonGoogleSignIn.setOnClickListener(v -> {
+            loginWithGoogle();
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 
     public void loginWithGoogle() {
@@ -123,9 +167,35 @@ public class MainActivity extends AbsThemeActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    private void loginAsGuest() {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            mAuth.signInAnonymously();
+        }
+    }
+
     public void logoutWithGoogle(){
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user.isAnonymous()){
+            showToast(getString(R.string.cant_logout_anonymous));
+            return;
+        }
         mAuth.signOut();
-        mGoogleSignInClient.signOut();
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    recreate();
+                    showToast(getString(R.string.logout_success));
+                }
+            }
+        });
+    }
+
+    private void showToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override

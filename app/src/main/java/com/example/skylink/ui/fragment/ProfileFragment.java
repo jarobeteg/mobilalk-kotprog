@@ -80,15 +80,13 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
-        loadUser();
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateUI();
+        loadUser();
     }
 
     private void updateUI(){
@@ -100,13 +98,9 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private void updateUI(String username){
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        if (user != null){
-            usernameTextView.setText(username);
-            emailTextView.setText(user.getEmail());
-        }
+    private void updateUI(String username, String email){
+        usernameTextView.setText(username);
+        emailTextView.setText(email);
     }
 
     private void showToast(String message){
@@ -129,7 +123,7 @@ public class ProfileFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        updateUI(username);
+                        updateUI(username, email);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -144,7 +138,15 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        assert user != null;
+        if (user == null){
+            return;
+        }
+
+        if (user.isAnonymous()){
+            updateUI(getString(R.string.anonymous), getString(R.string.anonymous));
+            return;
+        }
+
         String userId = user.getUid();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -155,16 +157,16 @@ public class ProfileFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     String username = documentSnapshot.getString("username");
+                    String email = documentSnapshot.getString("email");
 
-                    updateUI(username);
+                    updateUI(username, email);
                 } else {
-                    showToast("User data not found");
+                    updateUI();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                // Handle errors
                 showToast("Error: " + e.getMessage());
             }
         });

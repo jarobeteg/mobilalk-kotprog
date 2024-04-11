@@ -45,6 +45,12 @@
     <string name="unexpected_error">Unexpected error!</string>
     <string name="all_fields_must_be_filled">All fields must be filled!</string>
     <string name="passwords_do_not_match">Passwords do not match!</string>
-    <string name="no_user">No user found</string>
     <string name="password_too_short">The length of the password must be at least 8!</string>
+
+    <string name="login">Login</string>
+    <string name="login_google">Sign in with Google</string>
+    <string name="anonymous" translatable="false">Anonymous</string>
+    <string name="cant_logout_anonymous">Logging out isn\'t available for guest users. Please sign in to access logout functionality.</string>
+    <string name="login_success">Logged in successfully!</string>
+    <string name="logout_success">Logged out successfully!</string>
 </resources>
