@@ -6,6 +6,8 @@
     <string name="bottom_nav_profile">Profil</string>
     <string name="bottom_nav_more">Egyebek</string>
     <string name="title_settings_menu">Beállítások Menü</string>
+    <string name="title_add_new_flight">Új járat hozzáadása</string>
+
 
     <!--Preference Titles-->
     <string name="settings_activity_title">Beállítások</string>
@@ -46,4 +48,6 @@
     <string name="cant_logout_anonymous">A vendégfelhasználók számára nem lehetséges a kijelentkezés. Kérem, jelentkezz be a kijelentkezési funkció eléréséhez."</string>
     <string name="login_success">Sikeresen bejelentkezett!</string>
     <string name="logout_success">Sikeresen kijelentkezett!</string>
+
+    <string name="flight">Járat</string>
 </resources>

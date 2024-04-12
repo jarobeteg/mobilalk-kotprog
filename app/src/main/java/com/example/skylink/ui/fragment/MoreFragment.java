@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.example.skylink.R;
 import com.example.skylink.adapter.ItemAdapter;
 import com.example.skylink.adapter.MoreAdapter;
+import com.example.skylink.ui.activity.FlightActivity;
 import com.example.skylink.ui.activity.SettingsActivity;
 import com.example.skylink.ui.viewmodel.MoreViewModel;
 
@@ -43,7 +44,8 @@ public class MoreFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.moreFragment_recyclerView);
         ItemAdapter[] items = new ItemAdapter[]{
-          new ItemAdapter(getString(R.string.title_settings_menu), () -> startActivity(new Intent(requireContext(), SettingsActivity.class)))
+                new ItemAdapter(getString(R.string.title_settings_menu), () -> startActivity(new Intent(requireContext(), SettingsActivity.class))),
+                new ItemAdapter(getString(R.string.title_add_new_flight), () -> startActivity(new Intent(requireContext(), FlightActivity.class)))
         };
         MoreAdapter moreAdapter = new MoreAdapter(Arrays.asList(items));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
