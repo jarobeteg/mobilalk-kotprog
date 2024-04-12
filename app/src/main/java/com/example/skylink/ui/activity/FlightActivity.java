@@ -1,7 +1,9 @@
 package com.example.skylink.ui.activity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -12,9 +14,13 @@ import com.example.skylink.database.AircraftRepository;
 import com.example.skylink.database.AirlineRepository;
 import com.example.skylink.database.entity.Aircraft;
 import com.example.skylink.database.entity.Airline;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class FlightActivity extends AbsThemeActivity implements AircraftRepository.OnAircraftsLoadedListener, AirlineRepository.OnAirlinesLoadedListener {
+    Spinner aircraftSpinner;
+    Spinner airlineSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,9 @@ public class FlightActivity extends AbsThemeActivity implements AircraftReposito
 
         ImageButton flightCheckmark = findViewById(R.id.new_flight_checkmark);
         Toolbar flightToolbar = findViewById(R.id.new_flight_toolbar);
+
+        aircraftSpinner = findViewById(R.id.aircraft);
+        airlineSpinner = findViewById(R.id.airline);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -62,11 +71,14 @@ public class FlightActivity extends AbsThemeActivity implements AircraftReposito
 
     @Override
     public void onAircraftsLoaded(List<Aircraft> aircrafts) {
+        List<String> modelList = new ArrayList<>();
         for (Aircraft aircraft: aircrafts) {
-            System.out.println("aircraft model: " + aircraft.getModel());
-            System.out.println("aircraft first class seats: " + aircraft.getFirstClassSeats());
-            System.out.println("aircraft second class seats: " + aircraft.getSecondClassSeats());
+            modelList.add(aircraft.getModel());
         }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, modelList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        aircraftSpinner.setAdapter(adapter);
     }
 
     @Override
@@ -81,9 +93,14 @@ public class FlightActivity extends AbsThemeActivity implements AircraftReposito
 
     @Override
     public void onAirlinesLoaded(List<Airline> airlines) {
+        List<String> nameList = new ArrayList<>();
         for (Airline airline: airlines) {
-            System.out.println("airline name: " + airline.getName());
+            nameList.add(airline.getName());
         }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, nameList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        airlineSpinner.setAdapter(adapter);
     }
 
     @Override

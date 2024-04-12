@@ -56,4 +56,12 @@
     <string name="logout_success">Logged out successfully!</string>
 
     <string name="flight">Flight</string>
+    <string name="departure_city">Departure City</string>
+    <string name="destination_city">Destination City</string>
+    <string name="date">Date</string>
+    <string name="departure_time">Departure Time</string>
+    <string name="arrival_time">Arrival Time</string>
+    <string name="aircraft">Aircraft</string>
+    <string name="airline">Airline</string>
+    <string name="price">Price</string>
 </resources>

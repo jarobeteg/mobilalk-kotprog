@@ -50,4 +50,12 @@
     <string name="logout_success">Sikeresen kijelentkezett!</string>
 
     <string name="flight">Járat</string>
+    <string name="departure_city">Kiindulási Város</string>
+    <string name="destination_city">Célváros</string>
+    <string name="date">Dátum</string>
+    <string name="departure_time">Indulási Idő</string>
+    <string name="arrival_time">Érkezési Idő</string>
+    <string name="aircraft">Repülőgép</string>
+    <string name="airline">Légitársaság</string>
+    <string name="price">Ár</string>
 </resources>
