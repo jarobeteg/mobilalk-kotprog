@@ -21,6 +21,7 @@ import com.example.skylink.adapter.MoreAdapter;
 import com.example.skylink.ui.activity.AircraftActivity;
 import com.example.skylink.ui.activity.AirlineActivity;
 import com.example.skylink.ui.activity.FlightActivity;
+import com.example.skylink.ui.activity.ModifyFlightsActivity;
 import com.example.skylink.ui.activity.SettingsActivity;
 import com.example.skylink.ui.viewmodel.MoreViewModel;
 
@@ -49,7 +50,8 @@ public class MoreFragment extends Fragment {
                 new ItemAdapter(getString(R.string.title_settings_menu), () -> startActivity(new Intent(requireContext(), SettingsActivity.class))),
                 new ItemAdapter(getString(R.string.title_add_new_flight), () -> startActivity(new Intent(requireContext(), FlightActivity.class))),
                 new ItemAdapter(getString(R.string.title_add_new_aircraft), () -> startActivity(new Intent(requireContext(), AircraftActivity.class))),
-                new ItemAdapter(getString(R.string.title_add_new_airline), () -> startActivity(new Intent(requireContext(), AirlineActivity.class)))
+                new ItemAdapter(getString(R.string.title_add_new_airline), () -> startActivity(new Intent(requireContext(), AirlineActivity.class))),
+                new ItemAdapter(getString(R.string.modify_flights), () -> startActivity(new Intent(requireContext(), ModifyFlightsActivity.class)))
         };
         MoreAdapter moreAdapter = new MoreAdapter(Arrays.asList(items));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

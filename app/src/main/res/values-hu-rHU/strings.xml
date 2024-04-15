@@ -70,4 +70,6 @@
     <string name="new_flight_added">Új járat sikeresen hozzáadva!</string>
     <string name="new_aircraft_added">Új repülőgép sikeresen hozzáadva!</string>
     <string name="new_airline_added">Új légitársaság sikeresen hozzáadva!</string>
+
+    <string name="modify_flights">Járatok módosítása</string>
 </resources>
