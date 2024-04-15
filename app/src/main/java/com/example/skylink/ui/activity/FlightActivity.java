@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlightActivity extends AbsThemeActivity implements AircraftRepository.OnAircraftsLoadedListener, AirlineRepository.OnAirlinesLoadedListener, FlightRepository.OnFlightAddedListener {
+   List<Aircraft> allAircrafts;
+   List<Airline> allAirlines;
     EditText departureCityEditText;
     EditText destinationCityEditText;
     DatePicker dateDatePicker;
@@ -96,10 +98,20 @@ public class FlightActivity extends AbsThemeActivity implements AircraftReposito
         }
 
         int price = Integer.parseInt(strPrice);
+        int vacantFirstClassSeats = 0;
+        int vacantSecondClassSeats = 0;
+
+        for (Aircraft res: allAircrafts){
+            if (res.getModel().equals(aircraft)) {
+                vacantFirstClassSeats = res.getFirstClassSeats();
+                vacantSecondClassSeats = res.getSecondClassSeats();
+            }
+        }
 
         Flight flight = new Flight(aircraft, airline, arrivalTime,
                 date, departureCity, departureTime,
-                destinationCity, flightDuration, price);
+                destinationCity, flightDuration, price,
+                vacantFirstClassSeats, vacantSecondClassSeats);
 
         FlightRepository flightRepository = new FlightRepository(this);
         flightRepository.addFlight(flight);
@@ -185,6 +197,7 @@ public class FlightActivity extends AbsThemeActivity implements AircraftReposito
 
     @Override
     public void onAircraftsLoaded(List<Aircraft> aircrafts) {
+        allAircrafts = aircrafts;
         List<String> modelList = new ArrayList<>();
         for (Aircraft aircraft: aircrafts) {
             modelList.add(aircraft.getModel());
@@ -207,6 +220,7 @@ public class FlightActivity extends AbsThemeActivity implements AircraftReposito
 
     @Override
     public void onAirlinesLoaded(List<Airline> airlines) {
+        allAirlines = airlines;
         List<String> nameList = new ArrayList<>();
         for (Airline airline: airlines) {
             nameList.add(airline.getName());

@@ -11,11 +11,15 @@ public class Flight {
     private String flightDuration;
     private int price;
 
+    private int vacantFirstClassSeats;
+    private int vacantSecondClassSeats;
+
     public Flight() {}
 
     public Flight(String aircraft, String airline, String arrivalTime,
                   String date, String departureCity, String departureTime,
-                  String destinationCity, String flightDuration, int price) {
+                  String destinationCity, String flightDuration, int price,
+                  int vacantFirstClassSeats, int vacantSecondClassSeats) {
         this.aircraft = aircraft;
         this.airline = airline;
         this.arrivalTime = arrivalTime;
@@ -25,6 +29,8 @@ public class Flight {
         this.destinationCity = destinationCity;
         this.flightDuration = flightDuration;
         this.price = price;
+        this.vacantFirstClassSeats = vacantFirstClassSeats;
+        this.vacantSecondClassSeats = vacantSecondClassSeats;
     }
 
     public String getAircraft() {
@@ -97,5 +103,21 @@ public class Flight {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getVacantFirstClassSeats() {
+        return this.vacantFirstClassSeats;
+    }
+
+    public void setVacantFirstClassSeats(int vacantFirstClassSeats) {
+        this.vacantFirstClassSeats = vacantFirstClassSeats;
+    }
+
+    public int getVacantSecondClassSeats() {
+        return this.vacantSecondClassSeats;
+    }
+
+    public void setVacantSecondClassSeats(int vacantSecondClassSeats) {
+        this.vacantSecondClassSeats = vacantSecondClassSeats;
     }
 }
