@@ -65,7 +65,6 @@ public class AircraftRepository extends AsyncTask<Void, Void, List<Aircraft>> {
         return aircraftList;
     }
 
-
     public interface OnAircraftsLoadedListener {
         void onAircraftsLoaded(List<Aircraft> aircrafts);
         void onAircraftsLoadFailed(Exception e);

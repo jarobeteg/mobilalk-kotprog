@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlightActivity extends AbsThemeActivity implements AircraftRepository.OnAircraftsLoadedListener, AirlineRepository.OnAirlinesLoadedListener, FlightRepository.OnFlightAddedListener {
-   List<Aircraft> allAircrafts;
-   List<Airline> allAirlines;
+    List<Aircraft> allAircrafts;
+    List<Airline> allAirlines;
     EditText departureCityEditText;
     EditText destinationCityEditText;
     DatePicker dateDatePicker;

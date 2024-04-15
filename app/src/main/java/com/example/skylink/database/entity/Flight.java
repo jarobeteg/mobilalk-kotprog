@@ -1,6 +1,7 @@
 package com.example.skylink.database.entity;
 
 public class Flight {
+    private String flightId;
     private String aircraft;
     private String airline;
     private String arrivalTime;
@@ -10,7 +11,6 @@ public class Flight {
     private String destinationCity;
     private String flightDuration;
     private int price;
-
     private int vacantFirstClassSeats;
     private int vacantSecondClassSeats;
 
@@ -31,6 +31,14 @@ public class Flight {
         this.price = price;
         this.vacantFirstClassSeats = vacantFirstClassSeats;
         this.vacantSecondClassSeats = vacantSecondClassSeats;
+    }
+
+    public String getFlightId() {
+        return this.flightId;
+    }
+
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
     }
 
     public String getAircraft() {
