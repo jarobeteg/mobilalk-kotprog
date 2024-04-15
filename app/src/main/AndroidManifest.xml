@@ -16,6 +16,12 @@
         android:theme="@style/SplashTheme"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.AircraftActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.AirlineActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.FlightActivity"
             android:exported="false" />
         <activity

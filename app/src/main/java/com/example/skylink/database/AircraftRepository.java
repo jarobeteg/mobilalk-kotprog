@@ -11,10 +11,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AircraftRepository extends AsyncTask<Void, Void, List<Aircraft>> {
-    private OnAircraftsLoadedListener listener;
+    private FirebaseFirestore db;
+    private OnAircraftsLoadedListener aircraftsLoadedListener;
+    private OnAircraftAddedListener aircraftAddedListener;
 
-    public AircraftRepository(OnAircraftsLoadedListener listener) {
-        this.listener = listener;
+    public AircraftRepository(OnAircraftsLoadedListener aircraftsLoadedListener) {
+        this.aircraftsLoadedListener = aircraftsLoadedListener;
+    }
+
+    public AircraftRepository(OnAircraftAddedListener aircraftAddedListener) {
+        this.aircraftAddedListener = aircraftAddedListener;
+        this.db = FirebaseFirestore.getInstance();
+    }
+
+    public void addAircraft(Aircraft aircraft) {
+        db.collection("aircrafts")
+                .add(aircraft)
+                .addOnSuccessListener(documentReference -> {
+                    if (aircraftAddedListener != null) {
+                        aircraftAddedListener.onAircraftAdded(documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    if (aircraftAddedListener != null) {
+                        aircraftAddedListener.onAircraftAddFailed(e);
+                    }
+                });
     }
 
     @Override
@@ -31,13 +53,13 @@ public class AircraftRepository extends AsyncTask<Void, Void, List<Aircraft>> {
                                Aircraft aircraft = document.toObject(Aircraft.class);
                                aircraftList.add(aircraft);
                            }
-                           listener.onAircraftsLoaded(aircraftList);
+                           aircraftsLoadedListener.onAircraftsLoaded(aircraftList);
                        } else {
-                           listener.onAircraftsLoadFailed(task.getException());
+                           aircraftsLoadedListener.onAircraftsLoadFailed(task.getException());
                        }
                     });
         } catch (Exception e) {
-            listener.onAircraftsLoadFailed(e);
+            aircraftsLoadedListener.onAircraftsLoadFailed(e);
         }
 
         return aircraftList;
@@ -47,5 +69,10 @@ public class AircraftRepository extends AsyncTask<Void, Void, List<Aircraft>> {
     public interface OnAircraftsLoadedListener {
         void onAircraftsLoaded(List<Aircraft> aircrafts);
         void onAircraftsLoadFailed(Exception e);
+    }
+
+    public interface OnAircraftAddedListener {
+        void onAircraftAdded(String aircraftId);
+        void onAircraftAddFailed(Exception e);
     }
 }

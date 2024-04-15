@@ -7,7 +7,8 @@
     <string name="bottom_nav_more">Egyebek</string>
     <string name="title_settings_menu">Beállítások Menü</string>
     <string name="title_add_new_flight">Új járat hozzáadása</string>
-
+    <string name="title_add_new_aircraft">Új repülőgép hozzáadása</string>
+    <string name="title_add_new_airline">Új légitársaság hozzáadása</string>
 
     <!--Preference Titles-->
     <string name="settings_activity_title">Beállítások</string>
@@ -58,4 +59,15 @@
     <string name="aircraft">Repülőgép</string>
     <string name="airline">Légitársaság</string>
     <string name="price">Ár</string>
+    <string name="hour">\u00A0óra</string>
+    <string name="minutes">\u00A0perc</string>
+
+    <string name="airline_name">Légitársaság neve</string>
+    <string name="aircraft_model">Repülőgép modell</string>
+    <string name="first_class_seats">Első osztályú ülőhelyek száma</string>
+    <string name="second_class_seats">Másodosztályú ülések száma</string>
+
+    <string name="new_flight_added">Új járat sikeresen hozzáadva!</string>
+    <string name="new_aircraft_added">Új repülőgép sikeresen hozzáadva!</string>
+    <string name="new_airline_added">Új légitársaság sikeresen hozzáadva!</string>
 </resources>

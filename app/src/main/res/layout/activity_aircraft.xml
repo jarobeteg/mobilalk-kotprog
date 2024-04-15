@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.AircraftActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/new_aircraft_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="?attr/colorAccent"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        app:navigationIconTint="@color/white">
+
+        <TextView
+            android:id="@+id/new_aircraft_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aircraft"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            android:id="@+id/new_aircraft_checkmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_checkmark_24"
+            android:background="@drawable/ripple_circle"
+            android:layout_gravity="end"
+            android:layout_margin="8dp"
+            android:padding="8dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/aircraft_model"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/aircraft_model"
+        android:inputType="text"
+        android:background="@drawable/custom_rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/new_aircraft_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:padding="16dp"/>
+
+    <EditText
+        android:id="@+id/first_class_seats"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/first_class_seats"
+        android:inputType="number"
+        android:background="@drawable/custom_rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/aircraft_model"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:padding="16dp"/>
+
+    <EditText
+        android:id="@+id/second_class_seats"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/second_class_seats"
+        android:inputType="number"
+        android:background="@drawable/custom_rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/first_class_seats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:padding="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
