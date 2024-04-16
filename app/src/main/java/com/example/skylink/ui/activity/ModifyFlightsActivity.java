@@ -5,8 +5,11 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skylink.R;
+import com.example.skylink.adapter.ModifyFlightAdapter;
 import com.example.skylink.database.FlightRepository;
 import com.example.skylink.database.entity.Flight;
 
@@ -14,6 +17,8 @@ import java.util.List;
 
 public class ModifyFlightsActivity extends AbsThemeActivity implements FlightRepository.OnFlightsLoadedListener {
     List<Flight> allFlights;
+    private RecyclerView recyclerView;
+    private ModifyFlightAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,9 @@ public class ModifyFlightsActivity extends AbsThemeActivity implements FlightRep
         loadFlights();
 
         Toolbar modifyFlightToolbar = findViewById(R.id.modify_flights_toolbar);
+
+        recyclerView = findViewById(R.id.recycler_view_flights);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -44,18 +52,20 @@ public class ModifyFlightsActivity extends AbsThemeActivity implements FlightRep
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    private void modifyFlight() {
-        finish();
-    }
-
     private void loadFlights() {
         FlightRepository flightRepository = new FlightRepository(this);
         flightRepository.execute();
     }
 
+    private void loadFlightData() {
+        adapter = new ModifyFlightAdapter(allFlights, this);
+        recyclerView.setAdapter(adapter);
+    }
+
     @Override
     public void onFlightsLoaded(List<Flight> flights) {
         allFlights = flights;
+        loadFlightData();
     }
 
     @Override

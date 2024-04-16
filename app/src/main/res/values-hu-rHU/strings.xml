@@ -72,4 +72,6 @@
     <string name="new_airline_added">Új légitársaság sikeresen hozzáadva!</string>
 
     <string name="modify_flights">Járatok módosítása</string>
+    <string name="flight_deleted">Járat sikeresen törölve!</string>
+    <string name="flight_modified">Járat sikeresen módosítva!</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.skylink.database;
 import android.os.AsyncTask;
 
 import com.example.skylink.database.entity.Flight;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -13,6 +14,7 @@ public class FlightRepository extends AsyncTask<Void, Void, List<Flight>> {
     private FirebaseFirestore db;
     private OnFlightsLoadedListener flightsLoadedListener;
     private OnFlightAddedListener flightAddedListener;
+    private OnFlightDeletedListener flightDeletedListener;
 
     public FlightRepository(OnFlightsLoadedListener flightsLoadedListener) {
         this.flightsLoadedListener = flightsLoadedListener;
@@ -20,6 +22,11 @@ public class FlightRepository extends AsyncTask<Void, Void, List<Flight>> {
 
     public FlightRepository(OnFlightAddedListener flightAddedListener) {
         this.flightAddedListener = flightAddedListener;
+        this.db = FirebaseFirestore.getInstance();
+    }
+
+    public FlightRepository(OnFlightDeletedListener flightDeletedListener) {
+        this.flightDeletedListener = flightDeletedListener;
         this.db = FirebaseFirestore.getInstance();
     }
 
@@ -37,6 +44,29 @@ public class FlightRepository extends AsyncTask<Void, Void, List<Flight>> {
                     }
                 });
 
+    }
+
+    public void deleteFlight(Flight flight) {
+        DocumentReference flightReference = db.collection("flights").document(flight.getFlightId());
+
+        flightReference.delete()
+                .addOnSuccessListener(v -> {
+                    flightDeletedListener.onFlightDeleted(flight);
+                    updateBookingsForDeletedFlight(flight.getFlightId());
+                })
+                .addOnFailureListener(e -> flightDeletedListener.onFlightDeleteFailed(e));
+    }
+
+    private void updateBookingsForDeletedFlight(String flightId) {
+        db.collection("bookings")
+                .whereEqualTo("flightId", flightId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
+                        DocumentReference bookingReference = snapshot.getReference();
+                        bookingReference.delete();
+                    }
+                });
     }
 
     @Override
@@ -75,5 +105,10 @@ public class FlightRepository extends AsyncTask<Void, Void, List<Flight>> {
     public interface OnFlightAddedListener {
         void onFlightAdded(String flightId);
         void onFlightAddFailed(Exception e);
+    }
+
+    public interface OnFlightDeletedListener {
+        void onFlightDeleted(Flight flight);
+        void onFlightDeleteFailed(Exception e);
     }
 }

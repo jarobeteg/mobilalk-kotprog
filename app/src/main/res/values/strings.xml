@@ -79,4 +79,6 @@
     <string name="new_airline_added">Successfully added new airline!</string>
 
     <string name="modify_flights">Modify flights</string>
+    <string name="flight_deleted">Flight deleted successfully!</string>
+    <string name="flight_modified">Flight modified successfully!</string>
 </resources>
