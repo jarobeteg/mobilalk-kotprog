@@ -84,6 +84,6 @@
 
     <string name="first_class_seat">First class seat</string>
     <string name="second_class_seat">Second class seat</string>
-    <string name="first_class_seat_price">Second class seat price</string>
+    <string name="first_class_seat_price">First class seat price</string>
     <string name="second_class_seat_price">Second class seat price</string>
 </resources>

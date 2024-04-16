@@ -4,15 +4,13 @@ public class Booking {
     private String bookingId;
     private String  flightId;
     private String  userId;
-    private int seatNumber;
     private boolean isFirstClassSeat;
 
     public Booking() {}
 
-    public Booking(String flightId, String userId, int seatNumber, boolean isFirstClassSeat) {
+    public Booking(String flightId, String userId, boolean isFirstClassSeat) {
         this.flightId = flightId;
         this.userId = userId;
-        this.seatNumber = seatNumber;
         this.isFirstClassSeat = isFirstClassSeat;
     }
 
@@ -38,14 +36,6 @@ public class Booking {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public int getSeatNumber() {
-        return this.seatNumber;
-    }
-
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
     }
 
     public boolean isFirstClassSeat() {

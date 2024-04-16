@@ -55,7 +55,7 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightsV
     }
 
     private String setFlightSeatPrices(Flight flight) {
-        return context.getString(R.string.first_class_seat_price) + ": " + flight.getPrice() + " - " + context.getString(R.string.second_class_seat_price) + ": " + Math.round(flight.getPrice() * 1.15);
+        return context.getString(R.string.first_class_seat_price) + ": " + Math.round(flight.getPrice() * 1.2) + " - " + context.getString(R.string.second_class_seat_price) + ": " + flight.getPrice();
     }
 
     private String setFlightTime(Flight flight) {
