@@ -30,7 +30,9 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
                     .addOnCompleteListener(task -> {
                        if (task.isSuccessful()) {
                            for (QueryDocumentSnapshot document : task.getResult()) {
+                               String bookingId = document.getId();
                                Booking booking = document.toObject(Booking.class);
+                               booking.setBookingId(bookingId);
                                bookingList.add(booking);
                            }
                            bookingsLoadedListener.onBookingLoaded(bookingList);

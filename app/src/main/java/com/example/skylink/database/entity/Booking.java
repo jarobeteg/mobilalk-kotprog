@@ -1,8 +1,7 @@
 package com.example.skylink.database.entity;
 
-import com.google.firebase.firestore.DocumentReference;
-
 public class Booking {
+    private String bookingId;
     private String  flightId;
     private String  userId;
     private int seatNumber;
@@ -15,6 +14,14 @@ public class Booking {
         this.userId = userId;
         this.seatNumber = seatNumber;
         this.isFirstClassSeat = isFirstClassSeat;
+    }
+
+    public String getBookingId() {
+        return this.bookingId;
+    }
+
+    public void setBookingId(String bookingId) {
+        this.bookingId = bookingId;
     }
 
     public String getFlightId() {

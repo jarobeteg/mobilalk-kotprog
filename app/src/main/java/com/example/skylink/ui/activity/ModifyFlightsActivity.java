@@ -28,7 +28,7 @@ public class ModifyFlightsActivity extends AbsThemeActivity implements FlightRep
 
         Toolbar modifyFlightToolbar = findViewById(R.id.modify_flights_toolbar);
 
-        recyclerView = findViewById(R.id.recycler_view_flights);
+        recyclerView = findViewById(R.id.recycler_view_modify_flights);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         if (getSupportActionBar() != null) {

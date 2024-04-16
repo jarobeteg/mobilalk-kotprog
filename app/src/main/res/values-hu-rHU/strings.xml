@@ -77,4 +77,6 @@
 
     <string name="first_class_seat">Első osztályú ülés</string>
     <string name="second_class_seat">Másodosztályú ülés</string>
+    <string name="first_class_seat_price">Első osztályú ülés ára</string>
+    <string name="second_class_seat_price">Másodosztályú ülés ára</string>
 </resources>
