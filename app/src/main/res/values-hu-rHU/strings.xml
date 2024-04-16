@@ -74,9 +74,17 @@
     <string name="modify_flights">Járatok módosítása</string>
     <string name="flight_deleted">Járat sikeresen törölve!</string>
     <string name="flight_modified">Járat sikeresen módosítva!</string>
+    <string name="booking_deleted">Foglalás sikeresen törölve!</string>
+    <string name="booking_changed">Foglalás sikeresen módosult!</string>
 
     <string name="first_class_seat">Első osztályú ülés</string>
     <string name="second_class_seat">Másodosztályú ülés</string>
     <string name="first_class_seat_price">Első osztályú ülés ára</string>
     <string name="second_class_seat_price">Másodosztályú ülés ára</string>
+    <string name="book_first_class_seat">Első osztályú ülés foglalása</string>
+    <string name="book_second_class_seat">Másodosztályú ülés foglalása</string>
+    <string name="change_to_first_class_seat">Első osztályú ülésre váltás</string>
+    <string name="change_to_second_class_seat">Másodosztályú ülésre váltás</string>
+
+    <string name="submit_changes">Módosítások mentése</string>
 </resources>

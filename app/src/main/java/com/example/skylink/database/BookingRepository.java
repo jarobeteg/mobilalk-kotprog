@@ -2,20 +2,53 @@ package com.example.skylink.database;
 
 import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
+
 import com.example.skylink.database.entity.Booking;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
     private OnBookingsLoadedListener bookingsLoadedListener;
+    private OnBookingChangedListener bookingChangedListener;
     private String userId;
 
     public BookingRepository(OnBookingsLoadedListener bookingsLoadedListener, String userId) {
         this.bookingsLoadedListener = bookingsLoadedListener;
         this.userId = userId;
+    }
+
+    public BookingRepository(OnBookingChangedListener bookingChangedListener, String userId) {
+        this.bookingChangedListener = bookingChangedListener;
+        this.userId = userId;
+    }
+
+    public void updateBooking(Booking booking) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentRef = db.collection("bookings").document(booking.getBookingId());
+
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("isFirstClassSeat", booking.isFirstClassSeat());
+
+        documentRef.update(updates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            bookingChangedListener.onBookingChanged();
+                        } else {
+                            bookingChangedListener.onBookingChangeFailed(task.getException());
+                        }
+                    }
+                });
     }
 
     @Override
@@ -50,5 +83,10 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
     public interface OnBookingsLoadedListener {
         void onBookingLoaded(List<Booking> bookingList);
         void onBookingLoadFailed(Exception e);
+    }
+
+    public interface OnBookingChangedListener {
+        void onBookingChanged();
+        void onBookingChangeFailed(Exception e);
     }
 }

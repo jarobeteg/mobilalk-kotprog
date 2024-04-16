@@ -81,9 +81,17 @@
     <string name="modify_flights">Modify flights</string>
     <string name="flight_deleted">Flight deleted successfully!</string>
     <string name="flight_modified">Flight modified successfully!</string>
+    <string name="booking_deleted">Booking deleted successfully!</string>
+    <string name="booking_changed">Booking changed successfully!</string>
 
     <string name="first_class_seat">First class seat</string>
     <string name="second_class_seat">Second class seat</string>
     <string name="first_class_seat_price">First class seat price</string>
     <string name="second_class_seat_price">Second class seat price</string>
+    <string name="book_first_class_seat">Book first class seat</string>
+    <string name="book_second_class_seat">Book second class seat</string>
+    <string name="change_to_first_class_seat">Change to first class seat</string>
+    <string name="change_to_second_class_seat">Change to second class seat</string>
+
+    <string name="submit_changes">Submit changes</string>
 </resources>

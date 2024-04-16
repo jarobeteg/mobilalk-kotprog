@@ -72,7 +72,7 @@ public class ModifyFlightAdapter extends RecyclerView.Adapter<ModifyFlightAdapte
     public void onFlightDeleted(Flight flight) {
         flightList.remove(flight);
         notifyDataSetChanged();
-        showToast("success");
+        showToast(context.getString(R.string.flight_deleted));
     }
 
     @Override

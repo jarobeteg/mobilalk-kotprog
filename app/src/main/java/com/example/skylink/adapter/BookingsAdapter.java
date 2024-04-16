@@ -4,19 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skylink.R;
+import com.example.skylink.database.BookingRepository;
 import com.example.skylink.database.entity.Booking;
 import com.example.skylink.database.entity.Flight;
 
 import java.util.List;
 
-public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.BookingsViewHolder> {
+public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.BookingsViewHolder> implements BookingRepository.OnBookingChangedListener {
     private List<Booking> bookingList;
     private List<Flight> flightList;
     private Context context;
@@ -47,6 +51,10 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
     @Override
     public int getItemCount() {
         return bookingList.size();
+    }
+
+    private void showToast(String message){
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
     private String setBookingData(Booking booking) {
@@ -87,8 +95,50 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
 
     private void deleteBooking(Booking booking) {}
 
-    private void modifyBooking(Booking booking) {}
+    private void modifyBooking(Booking booking) {
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.modify_booking_dialog, null);
 
+        Button changeToFirstClassSeatButton = dialogView.findViewById(R.id.change_to_first_class_seat);
+        Button changeToSecondClassSeatButton = dialogView.findViewById(R.id.change_to_second_class_seat);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+
+        if (booking.isFirstClassSeat()) {
+            changeToFirstClassSeatButton.setVisibility(View.GONE);
+            changeToSecondClassSeatButton.setOnClickListener(v -> {
+                booking.setFirstClassSeat(false);
+                updateBooking(booking);
+                dialog.dismiss();
+            });
+        } else {
+            changeToSecondClassSeatButton.setVisibility(View.GONE);
+            changeToFirstClassSeatButton.setOnClickListener(v -> {
+                booking.setFirstClassSeat(true);
+                updateBooking(booking);
+                dialog.dismiss();
+            });
+        }
+
+        dialog.show();
+    }
+
+    private void updateBooking(Booking booking) {
+        BookingRepository bookingRepository = new BookingRepository(this, booking.getUserId());
+        bookingRepository.updateBooking(booking);
+    }
+
+    @Override
+    public void onBookingChanged() {
+        notifyDataSetChanged();
+        showToast(context.getString(R.string.booking_changed));
+    }
+
+    @Override
+    public void onBookingChangeFailed(Exception e) {
+        showToast(e.getMessage());
+    }
 
     public static class BookingsViewHolder extends RecyclerView.ViewHolder {
         TextView bookingData;

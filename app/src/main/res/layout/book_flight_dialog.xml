@@ -6,20 +6,20 @@
     android:padding="16dp">
 
     <Button
-        android:id="@+id/change_to_first_class_seat"
+        android:id="@+id/book_first_class_seat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/change_to_first_class_seat"
+        android:text="@string/book_first_class_seat"
         android:textColor="@color/white"
         android:background="@drawable/custom_register_button"
         android:layout_margin="8dp"
         android:padding="8dp"/>
 
     <Button
-        android:id="@+id/change_to_second_class_seat"
+        android:id="@+id/book_second_class_seat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/change_to_second_class_seat"
+        android:text="@string/book_second_class_seat"
         android:textColor="@color/white"
         android:background="@drawable/custom_register_button"
         android:layout_margin="8dp"
