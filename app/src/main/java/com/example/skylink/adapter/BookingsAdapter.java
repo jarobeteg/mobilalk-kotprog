@@ -20,7 +20,7 @@ import com.example.skylink.database.entity.Flight;
 
 import java.util.List;
 
-public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.BookingsViewHolder> implements BookingRepository.OnBookingChangedListener {
+public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.BookingsViewHolder> implements BookingRepository.OnBookingChangedListener, BookingRepository.OnBookingDeletedListener {
     private List<Booking> bookingList;
     private List<Flight> flightList;
     private Context context;
@@ -93,7 +93,10 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
         return departureTime + " -> " + arrivalTime + " - " + date;
     }
 
-    private void deleteBooking(Booking booking) {}
+    private void deleteBooking(Booking booking) {
+        BookingRepository bookingRepository = new BookingRepository((BookingRepository.OnBookingDeletedListener) this);
+        bookingRepository.deleteBooking(booking);
+    }
 
     private void modifyBooking(Booking booking) {
         View dialogView = LayoutInflater.from(context).inflate(R.layout.modify_booking_dialog, null);
@@ -125,7 +128,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
     }
 
     private void updateBooking(Booking booking) {
-        BookingRepository bookingRepository = new BookingRepository(this, booking.getUserId());
+        BookingRepository bookingRepository = new BookingRepository((BookingRepository.OnBookingChangedListener) this);
         bookingRepository.updateBooking(booking);
     }
 
@@ -137,6 +140,18 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
 
     @Override
     public void onBookingChangeFailed(Exception e) {
+        showToast(e.getMessage());
+    }
+
+    @Override
+    public void onBookingDeleted(Booking booking) {
+        bookingList.remove(booking);
+        notifyDataSetChanged();
+        showToast(context.getString(R.string.booking_deleted));
+    }
+
+    @Override
+    public void onBookingDeleteFailed(Exception e) {
         showToast(e.getMessage());
     }
 

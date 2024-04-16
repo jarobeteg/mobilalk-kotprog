@@ -19,6 +19,7 @@ import java.util.Map;
 public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
     private OnBookingsLoadedListener bookingsLoadedListener;
     private OnBookingChangedListener bookingChangedListener;
+    private OnBookingDeletedListener bookingDeletedListener;
     private String userId;
 
     public BookingRepository(OnBookingsLoadedListener bookingsLoadedListener, String userId) {
@@ -26,9 +27,12 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
         this.userId = userId;
     }
 
-    public BookingRepository(OnBookingChangedListener bookingChangedListener, String userId) {
+    public BookingRepository(OnBookingChangedListener bookingChangedListener) {
         this.bookingChangedListener = bookingChangedListener;
-        this.userId = userId;
+    }
+
+    public BookingRepository(OnBookingDeletedListener bookingDeletedListener) {
+        this.bookingDeletedListener = bookingDeletedListener;
     }
 
     public void updateBooking(Booking booking) {
@@ -49,6 +53,15 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
                         }
                     }
                 });
+    }
+
+    public void deleteBooking(Booking booking) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentRef = db.collection("bookings").document(booking.getBookingId());
+
+        documentRef.delete()
+                .addOnSuccessListener(v -> bookingDeletedListener.onBookingDeleted(booking))
+                .addOnFailureListener(e -> bookingDeletedListener.onBookingDeleteFailed(e));
     }
 
     @Override
@@ -88,5 +101,10 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
     public interface OnBookingChangedListener {
         void onBookingChanged();
         void onBookingChangeFailed(Exception e);
+    }
+
+    public interface OnBookingDeletedListener {
+        void onBookingDeleted(Booking booking);
+        void onBookingDeleteFailed(Exception e);
     }
 }
