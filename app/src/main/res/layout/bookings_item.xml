@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/flight_text_linear_layout"
+        android:id="@+id/booking_text_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -15,40 +15,47 @@
         android:layout_marginEnd="24dp"
         android:padding="16dp">
 
-    <TextView
-        android:id="@+id/flight_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:padding="16dp"/>
+        <TextView
+            android:id="@+id/booking_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:padding="16dp"/>
 
-    <TextView
-        android:id="@+id/flight_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:padding="16dp"/>
+        <TextView
+            android:id="@+id/booking_seat_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/booking_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:padding="16dp"/>
 
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/modify_flight"
+        android:id="@+id/modify_booking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_edit_24"
         android:background="@drawable/ripple_circle"
-        android:layout_toStartOf="@id/delete_flight"
-        android:layout_marginTop="72dp"
+        android:layout_toStartOf="@id/delete_booking"
+        android:layout_marginTop="100dp"
         android:padding="8dp"/>
 
     <ImageButton
-        android:id="@+id/delete_flight"
+        android:id="@+id/delete_booking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete_24"
         android:background="@drawable/ripple_circle"
-        android:layout_alignEnd="@id/flight_text_linear_layout"
-        android:layout_marginTop="72dp"
+        android:layout_alignEnd="@id/booking_text_linear_layout"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
         android:padding="8dp"/>
 

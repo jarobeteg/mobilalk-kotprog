@@ -74,4 +74,7 @@
     <string name="modify_flights">Járatok módosítása</string>
     <string name="flight_deleted">Járat sikeresen törölve!</string>
     <string name="flight_modified">Járat sikeresen módosítva!</string>
+
+    <string name="first_class_seat">Első osztályú ülés</string>
+    <string name="second_class_seat">Másodosztályú ülés</string>
 </resources>

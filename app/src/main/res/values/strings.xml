@@ -81,4 +81,7 @@
     <string name="modify_flights">Modify flights</string>
     <string name="flight_deleted">Flight deleted successfully!</string>
     <string name="flight_modified">Flight modified successfully!</string>
+
+    <string name="first_class_seat">First class seat</string>
+    <string name="second_class_seat">Second class seat</string>
 </resources>

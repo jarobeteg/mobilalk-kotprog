@@ -3,34 +3,34 @@ package com.example.skylink.database.entity;
 import com.google.firebase.firestore.DocumentReference;
 
 public class Booking {
-    private DocumentReference flightReference;
-    private DocumentReference userReference;
+    private String  flightId;
+    private String  userId;
     private int seatNumber;
     private boolean isFirstClassSeat;
 
     public Booking() {}
 
-    public Booking(DocumentReference flightReference, DocumentReference userReference, int seatNumber, boolean isFirstClassSeat) {
-        this.flightReference = flightReference;
-        this.userReference = userReference;
+    public Booking(String flightId, String userId, int seatNumber, boolean isFirstClassSeat) {
+        this.flightId = flightId;
+        this.userId = userId;
         this.seatNumber = seatNumber;
         this.isFirstClassSeat = isFirstClassSeat;
     }
 
-    public DocumentReference getFlightReference() {
-        return this.flightReference;
+    public String getFlightId() {
+        return this.flightId;
     }
 
-    public void setFlightReference(DocumentReference flightReference) {
-        this.flightReference = flightReference;
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
     }
 
-    public DocumentReference getUserReference() {
-        return this.userReference;
+    public String getUserId() {
+        return this.userId;
     }
 
-    public void setUserReference(DocumentReference userReference) {
-        this.userReference = userReference;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public int getSeatNumber() {
