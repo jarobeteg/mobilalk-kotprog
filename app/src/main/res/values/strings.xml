@@ -95,4 +95,5 @@
     <string name="change_to_second_class_seat">Change to second class seat</string>
 
     <string name="submit_changes">Submit changes</string>
+    <string name="notification_on_flight_booked">Please note that your seat number will be assigned at the airport, and payment for your ticket will be processed there as well.</string>
 </resources>
