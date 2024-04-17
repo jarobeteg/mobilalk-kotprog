@@ -45,7 +45,15 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightsV
         holder.flightsSeatData.setText(setFlightSeatData(flight));
         holder.flightsSeatPrices.setText(setFlightSeatPrices(flight));
         holder.flightsTime.setText(setFlightTime(flight));
-        holder.flightsBook.setOnClickListener(v -> bookFlight(flight));
+        holder.flightsBook.setOnClickListener(v -> {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            FirebaseUser user = auth.getCurrentUser();
+            if (user != null && !user.isAnonymous()) {
+                bookFlight(flight);
+            } else {
+                showToast(context.getString(R.string.create_profile_to_access_more_functions));
+            }
+        });
     }
 
     @Override

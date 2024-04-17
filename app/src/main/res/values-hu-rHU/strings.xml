@@ -88,5 +88,6 @@
     <string name="change_to_second_class_seat">Másodosztályú ülésre váltás</string>
 
     <string name="submit_changes">Módosítások mentése</string>
+    <string name="create_profile_to_access_more_functions">Kérjük, fontolja meg felhasználói profil létrehozását, hogy több funkcióhoz is hozzáférhessen.</string>
     <string name="notification_on_flight_booked">Felhívjuk figyelmét, hogy az ülésszámot a repülőtéren osztják ki, és a jegyek kifizetése is ott történik.</string>
 </resources>

@@ -23,7 +23,8 @@
             android:textSize="16sp"
             android:padding="16dp"
             app:drawableStartCompat="@drawable/ic_departure_24"
-            app:drawableEndCompat="@drawable/ic_arrival_24"/>
+            app:drawableEndCompat="@drawable/ic_arrival_24"
+            android:drawablePadding="8dp"/>
 
         <TextView
             android:id="@+id/flights_seat_data"
