@@ -52,6 +52,12 @@ public class HomeFragment extends Fragment implements FlightRepository.OnFlights
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadFlights();
+    }
+
     private void showToast(String message){
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
     }
