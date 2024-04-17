@@ -59,6 +59,13 @@ public class BookingsFragment extends Fragment implements BookingRepository.OnBo
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadBookings();
+        loadFlights();
+    }
+
     private void loadBookings() {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();

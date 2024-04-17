@@ -20,6 +20,7 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
     private OnBookingsLoadedListener bookingsLoadedListener;
     private OnBookingChangedListener bookingChangedListener;
     private OnBookingDeletedListener bookingDeletedListener;
+    private OnBookingAddedListener bookingAddedListener;
     private String userId;
 
     public BookingRepository(OnBookingsLoadedListener bookingsLoadedListener, String userId) {
@@ -33,6 +34,18 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
 
     public BookingRepository(OnBookingDeletedListener bookingDeletedListener) {
         this.bookingDeletedListener = bookingDeletedListener;
+    }
+
+    public BookingRepository(OnBookingAddedListener bookingAddedListener) {
+        this.bookingAddedListener = bookingAddedListener;
+    }
+
+    public void addBooking(Booking booking) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("bookings")
+                .add(booking)
+                .addOnSuccessListener(documentReference -> bookingAddedListener.onBookingAdded(documentReference.getId()))
+                .addOnFailureListener(e -> bookingAddedListener.onBookingAddFailed(e));
     }
 
     public void updateBooking(Booking booking) {
@@ -106,5 +119,10 @@ public class BookingRepository extends AsyncTask<Void, Void, List<Booking>> {
     public interface OnBookingDeletedListener {
         void onBookingDeleted(Booking booking);
         void onBookingDeleteFailed(Exception e);
+    }
+
+    public interface OnBookingAddedListener {
+        void onBookingAdded(String bookingId);
+        void onBookingAddFailed(Exception e);
     }
 }

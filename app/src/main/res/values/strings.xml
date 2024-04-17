@@ -81,6 +81,7 @@
     <string name="modify_flights">Modify flights</string>
     <string name="flight_deleted">Flight deleted successfully!</string>
     <string name="flight_modified">Flight modified successfully!</string>
+    <string name="flight_booked">Flight booked successfully!</string>
     <string name="booking_deleted">Booking deleted successfully!</string>
     <string name="booking_changed">Booking changed successfully!</string>
 

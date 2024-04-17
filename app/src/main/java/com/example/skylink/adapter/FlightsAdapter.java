@@ -4,18 +4,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skylink.R;
+import com.example.skylink.database.BookingRepository;
+import com.example.skylink.database.entity.Booking;
 import com.example.skylink.database.entity.Flight;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightsViewHolder>{
+public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightsViewHolder> implements BookingRepository.OnBookingAddedListener {
     private List<Flight> flightList;
     private Context context;
 
@@ -46,6 +53,10 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightsV
         return flightList.size();
     }
 
+    private void showToast(String message){
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
+
     private String setFlightData(Flight flight) {
         return flight.getDepartureCity() + " -> " + flight.getDestinationCity();
     }
@@ -63,7 +74,49 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightsV
     }
 
     private void bookFlight(Flight flight) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            return;
+        }
 
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.book_flight_dialog, null);
+
+        Button bookFirstClassSeatButton = dialogView.findViewById(R.id.book_first_class_seat);
+        Button bookSecondClassSeatButton = dialogView.findViewById(R.id.book_second_class_seat);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+
+        bookFirstClassSeatButton.setOnClickListener(v -> {
+            Booking booking = new Booking(flight.getFlightId(), user.getUid(), true);
+            addBooking(booking);
+            dialog.dismiss();
+        });
+
+        bookSecondClassSeatButton.setOnClickListener(v -> {
+            Booking booking = new Booking(flight.getFlightId(), user.getUid(), false);
+            addBooking(booking);
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
+    private void addBooking(Booking booking){
+        BookingRepository bookingRepository = new BookingRepository(this);
+        bookingRepository.addBooking(booking);
+    }
+
+    @Override
+    public void onBookingAdded(String bookingId) {
+        showToast(context.getString(R.string.flight_booked));
+    }
+
+    @Override
+    public void onBookingAddFailed(Exception e) {
+        showToast(e.getMessage());
     }
 
     public static class FlightsViewHolder extends RecyclerView.ViewHolder {

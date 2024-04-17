@@ -74,6 +74,7 @@
     <string name="modify_flights">Járatok módosítása</string>
     <string name="flight_deleted">Járat sikeresen törölve!</string>
     <string name="flight_modified">Járat sikeresen módosítva!</string>
+    <string name="flight_booked">Járat sikeresen lefoglalva!</string>
     <string name="booking_deleted">Foglalás sikeresen törölve!</string>
     <string name="booking_changed">Foglalás sikeresen módosult!</string>
 
