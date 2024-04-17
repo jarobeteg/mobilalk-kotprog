@@ -2,19 +2,26 @@ package com.example.skylink.database;
 
 import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
+
 import com.example.skylink.database.entity.Flight;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FlightRepository extends AsyncTask<Void, Void, List<Flight>> {
     private FirebaseFirestore db;
     private OnFlightsLoadedListener flightsLoadedListener;
     private OnFlightAddedListener flightAddedListener;
     private OnFlightDeletedListener flightDeletedListener;
+    private OnFlightChangedListener flightChangedListener;
 
     public FlightRepository(OnFlightsLoadedListener flightsLoadedListener) {
         this.flightsLoadedListener = flightsLoadedListener;
@@ -28,6 +35,35 @@ public class FlightRepository extends AsyncTask<Void, Void, List<Flight>> {
     public FlightRepository(OnFlightDeletedListener flightDeletedListener) {
         this.flightDeletedListener = flightDeletedListener;
         this.db = FirebaseFirestore.getInstance();
+    }
+
+    public FlightRepository(OnFlightChangedListener flightChangedListener) {
+        this.flightChangedListener = flightChangedListener;
+        this.db = FirebaseFirestore.getInstance();
+    }
+
+    public void updateFlight(Flight flight) {
+        DocumentReference documentRef = db.collection("flights").document(flight.getFlightId());
+
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("departureCity", flight.getDepartureCity());
+        updates.put("destinationCity", flight.getDestinationCity());
+        updates.put("date", flight.getDate());
+        updates.put("departureTime", flight.getDepartureTime());
+        updates.put("arrivalTime", flight.getArrivalTime());
+        updates.put("flightDuration", flight.getFlightDuration());
+
+        documentRef.update(updates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            flightChangedListener.onFlightChanged();
+                        } else {
+                            flightChangedListener.onFlightChangeFailed(task.getException());
+                        }
+                    }
+                });
     }
 
     public void addFlight(Flight flight) {
@@ -110,5 +146,10 @@ public class FlightRepository extends AsyncTask<Void, Void, List<Flight>> {
     public interface OnFlightDeletedListener {
         void onFlightDeleted(Flight flight);
         void onFlightDeleteFailed(Exception e);
+    }
+
+    public interface OnFlightChangedListener {
+        void onFlightChanged();
+        void onFlightChangeFailed(Exception e);
     }
 }
