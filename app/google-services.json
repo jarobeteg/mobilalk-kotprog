@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "742014917067",
+    "project_id": "skylink-dcea3",
+    "storage_bucket": "skylink-dcea3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742014917067:android:f9b5d3b23811c545607e4e",
+        "android_client_info": {
+          "package_name": "com.example.skylink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742014917067-1n5dqcgq7fifbqmoqa6lb5hl00fcgrvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skylink",
+            "certificate_hash": "e2c734f7134177c85703b49591d2aa2dff60d940"
+          }
+        },
+        {
+          "client_id": "742014917067-a82gf9d9jhrr2ghb4oatfoho4f5k41s0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk93l_sf3uamg7Rzakoviw3_VD-cYI-xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742014917067-a82gf9d9jhrr2ghb4oatfoho4f5k41s0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
